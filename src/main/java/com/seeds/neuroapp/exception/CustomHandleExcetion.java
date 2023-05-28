@@ -38,4 +38,9 @@ public class CustomHandleExcetion extends ResponseEntityExceptionHandler {
         CustomExceptionDto exceptionDto = new CustomExceptionDto(ex.getMessage(), HttpStatus.NOT_FOUND.value());
         return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler({ConflictException.class})
+    public ResponseEntity<Object> handleBadRequestException(ConflictException ex){
+        CustomExceptionDto exceptionDto = new CustomExceptionDto(ex.getMessage(), HttpStatus.CONFLICT.value());
+        return new ResponseEntity<>(exceptionDto, HttpStatus.CONFLICT);
+    }
 }
