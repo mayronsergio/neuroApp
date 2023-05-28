@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -19,27 +19,27 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping("/usuarios")
+    @PostMapping
     public Usuario salvarUsuario(@Valid @RequestBody Usuario usuario) throws Exception {
         return usuarioService.salvarUsuario(usuario);
     }
 
-    @GetMapping("/usuarios/{id}")
+    @GetMapping("/{id}")
     public Usuario consultarPorId(@PathVariable Long id){
         return usuarioService.consultarPorId(id);
     }
 
-    @GetMapping("/usuarios")
+    @GetMapping
     public List<Usuario> listarTodosUsuarios(){
         return usuarioService.consultarTodosUsuarios();
     }
 
-    @PutMapping("/usuarios/{id}")
+    @PutMapping("/{id}")
     public Usuario atualizarUsuario(@Valid @RequestBody Usuario usuario, @PathVariable Long id){
         return usuarioService.atualizarUsuario(usuario, id);
     }
 
-    @DeleteMapping("/usuarios/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarUsuario(@PathVariable Long id){
         usuarioService.deletarUsuario(id);
