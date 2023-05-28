@@ -1,5 +1,6 @@
 package com.seeds.neuroapp.service;
 import com.seeds.neuroapp.model.Usuario;
+import com.seeds.neuroapp.model.enums.TipoUsuario;
 import com.seeds.neuroapp.repository.UsuarioRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,8 +25,8 @@ public class UsuarioServiceTest {
         Usuario usuario = new Usuario();
         usuario.setNomeUsuario("John Doe");
         usuario.setEmail("johndoe@example.com");
-        usuario.setSenha(123456);
-        usuario.setTipoUsuario(1);
+        usuario.setSenhaUsuario("123456");
+        usuario.setTipoUsuario(TipoUsuario.PACIENTE);
 
         // Configuração do comportamento simulado do UsuarioRepository
         when(usuarioRepository.save(usuario)).thenReturn(usuario);
