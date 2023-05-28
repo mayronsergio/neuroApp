@@ -22,22 +22,22 @@ public class PacienteService {
         return pacienteRepository.save(paciente);
     }
 
-    public Paciente consultarPorId(Long id){
+    public Paciente consultarPacientePorId(Long id){
         return pacienteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Paciente não encontrado"));
     }
 
-    public List<Paciente> consultarTodosUsuarios(){
+    public List<Paciente> consultarTodosPacientes(){
         return pacienteRepository.findAll();
     }
 
-    public Paciente atualizarUsuario(Paciente paciente, Long id){
+    public Paciente atualizarPaciente(Paciente paciente, Long id){
         if (!pacienteRepository.existsById(id)){
             throw new ResourceNotFoundException("Paciente não encontrado");
         }
         return pacienteRepository.save(paciente);
     }
 
-    public void deletarUsuario(Long id){
+    public void deletarPaciente(Long id){
         if(!pacienteRepository.existsById(id)){
             throw new ResourceNotFoundException("Paciente não encontrado");
         }

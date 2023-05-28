@@ -21,27 +21,27 @@ public class LeitoController {
 
     @PostMapping
     public Leito salvarLeito(@RequestBody Leito leito){
-        return leitoService.salvar(leito);
+        return leitoService.salvarLeito(leito);
     }
 
     @GetMapping("/{id}")
     public Leito consultarPorId(@PathVariable Long id){
-        return leitoService.consultarPorId(id);
+        return leitoService.consultarLeitoPorId(id);
     }
 
     @GetMapping
     public List<Leito> consultarTodosPacientes(){
-        return leitoService.consultarTodos();
+        return leitoService.consultarTodosLeitos();
     }
 
     @PutMapping("/{id}")
     public Leito atualizarPaciente(@RequestBody Leito leito, @PathVariable Long id){
-        return leitoService.atualizar(leito, id);
+        return leitoService.atualizarLeito(leito, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarPaciente(@PathVariable Long id){
-        leitoService.deletar(id);
+        leitoService.deletarLeito(id);
     }
 }

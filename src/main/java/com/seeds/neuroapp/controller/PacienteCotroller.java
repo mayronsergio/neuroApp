@@ -26,22 +26,22 @@ public class PacienteCotroller {
 
     @GetMapping("/{id}")
     public Paciente consultarPorId(@PathVariable Long id){
-        return pacienteService.consultarPorId(id);
+        return pacienteService.consultarPacientePorId(id);
     }
 
     @GetMapping
     public List<Paciente> consultarTodosPacientes(){
-        return pacienteService.consultarTodosUsuarios();
+        return pacienteService.consultarTodosPacientes();
     }
 
     @PutMapping("/{id}")
     public Paciente atualizarPaciente(@RequestBody Paciente paciente, @PathVariable Long id){
-        return pacienteService.atualizarUsuario(paciente, id);
+        return pacienteService.atualizarPaciente(paciente, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarPaciente(@PathVariable Long id){
-        pacienteService.deletarUsuario(id);
+        pacienteService.deletarPaciente(id);
     }
 }

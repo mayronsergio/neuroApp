@@ -4,7 +4,6 @@ import com.seeds.neuroapp.model.Usuario;
 import com.seeds.neuroapp.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public Usuario consultarPorId(@PathVariable Long id){
-        return usuarioService.consultarPorId(id);
+        return usuarioService.consultarUsuarioPorId(id);
     }
 
     @GetMapping

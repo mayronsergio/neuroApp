@@ -22,7 +22,7 @@ public class LeitoService {
     }
 
 
-    public Leito salvar(Leito leito){
+    public Leito salvarLeito(Leito leito){
         if (leito.getPaciente() != null){
             verificarPacienteExistente(leito);
             verificarAssociacaoPacienteLeitoDuplicada(leito);
@@ -31,15 +31,15 @@ public class LeitoService {
     }
 
 
-    public Leito consultarPorId(Long id){
+    public Leito consultarLeitoPorId(Long id){
         return leitoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Leito não encontrado"));
     }
 
-    public List<Leito> consultarTodos(){
+    public List<Leito> consultarTodosLeitos(){
         return leitoRepository.findAll();
     }
 
-    public Leito atualizar(Leito leito, Long id){
+    public Leito atualizarLeito(Leito leito, Long id){
         if (!leitoRepository.existsById(id)){
             throw new ResourceNotFoundException("Leito não encontrado");
         }
@@ -50,7 +50,7 @@ public class LeitoService {
         return leitoRepository.save(leito);
     }
 
-    public void deletar(Long id){
+    public void deletarLeito(Long id){
         if(!leitoRepository.existsById(id)){
             throw new ResourceNotFoundException("Leito não encontrado");
         }
