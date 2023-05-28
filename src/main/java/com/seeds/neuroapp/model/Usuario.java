@@ -2,10 +2,7 @@ package com.seeds.neuroapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.seeds.neuroapp.model.enums.TipoUsuario;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -36,6 +33,7 @@ public class Usuario {
 
     @NotNull(message = "O campo 'tipoUsuario' não pode ser nulo.")
     @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
 
 }

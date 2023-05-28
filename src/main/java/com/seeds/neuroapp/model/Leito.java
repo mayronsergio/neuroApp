@@ -15,5 +15,6 @@ public class Leito {
     @OneToOne
     private Paciente paciente;
 
+    @Enumerated(EnumType.STRING)
     private StatusLeito status;
 }
