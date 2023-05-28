@@ -32,4 +32,10 @@ public class CustomHandleExcetion extends ResponseEntityExceptionHandler {
         CustomExceptionDto exceptionDto = new CustomExceptionDto(ex.getMessage(), HttpStatus.BAD_REQUEST.value());
         return new ResponseEntity<>(exceptionDto, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler({ResourceNotFoundException.class})
+    public ResponseEntity<Object> handleBadRequestException(ResourceNotFoundException ex){
+        CustomExceptionDto exceptionDto = new CustomExceptionDto(ex.getMessage(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(exceptionDto, HttpStatus.NOT_FOUND);
+    }
 }
