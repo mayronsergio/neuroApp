@@ -2,7 +2,6 @@ package com.seeds.neuroapp.service;
 
 import com.seeds.neuroapp.exception.ResourceNotFoundException;
 import com.seeds.neuroapp.model.Paciente;
-import com.seeds.neuroapp.model.Usuario;
 import com.seeds.neuroapp.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
