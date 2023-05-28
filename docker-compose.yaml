@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8181:8080"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.33
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "scope227"
+      MYSQL_DATABASE: "compose-mysql"
+      MYSQL_USER: "sa"
+      MYSQL_PASSWORD: "sa#123"
+    volumes:
+      - /home/mayron/workspace/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
