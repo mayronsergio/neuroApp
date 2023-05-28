@@ -1,5 +1,6 @@
 package com.seeds.neuroapp.model;
 
+import com.seeds.neuroapp.model.enums.StatusLeito;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,5 +15,5 @@ public class Leito {
     @OneToOne
     private Paciente paciente;
 
-    private int status;
+    private StatusLeito status;
 }
