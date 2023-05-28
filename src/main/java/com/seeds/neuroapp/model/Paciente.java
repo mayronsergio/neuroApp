@@ -1,5 +1,6 @@
 package com.seeds.neuroapp.model;
 
+import com.seeds.neuroapp.model.enums.Sexo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,5 +23,5 @@ public class Paciente {
 
     private Date dataNascimento;
 
-    private int sexo;
+    private Sexo sexo;
 }
