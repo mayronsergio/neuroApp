@@ -1,12 +1,16 @@
 package com.seeds.neuroapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.seeds.neuroapp.model.enums.TipoUsuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Data
@@ -16,14 +20,22 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
-    @Length(max = 80)
+    @NotNull(message = "O campo 'nomeUsuario' não pode ser nulo.")
+    @NotBlank(message = "O campo 'nomeUsuario' não pode estar vazio.")
+    @Size(max = 80, message = "O campo 'nomeUsuario' deve ter no máximo 150 caracteres.")
     private String nomeUsuario;
 
-    @Length(max = 80)
+    @NotNull(message = "O campo 'email' não pode ser nulo.")
+    @NotBlank(message = "O campo 'email' não pode estar vazio.")
+    @Email(message = "O campo 'email' deve ser preenchido com um endereço de e-mail válido.")
+    @Size(max = 80, message = "O campo 'email' deve ter no máximo 150 caracteres.")
     private String email;
 
-    private int senha;
+    @NotNull(message = "O campo 'senha' não pode ser nulo.")
+    private String senhaUsuario;
 
-    private int tipoUsuario;
+    @NotNull(message = "O campo 'tipoUsuario' não pode ser nulo.")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private TipoUsuario tipoUsuario;
 
 }

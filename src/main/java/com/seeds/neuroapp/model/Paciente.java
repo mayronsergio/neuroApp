@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -16,7 +17,7 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPaciente;
 
-    @Length(max = 80)
+    @Size(max = 80, message = "O campo 'nomePaciente' deve ter no máximo 80 caracteres.")
     private String nomePaciente;
 
     private Date dataNascimento;

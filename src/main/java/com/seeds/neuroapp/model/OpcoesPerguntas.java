@@ -1,6 +1,7 @@
 package com.seeds.neuroapp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -12,7 +13,7 @@ public class OpcoesPerguntas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOpcoesPerguntas;
 
-    @Length(max = 150)
+    @Size(max = 150, message = "O campo 'descricaoOpcoes' deve ter no máximo 150 caracteres.")
     private String descricaoOpcoes;
 
     private int valor;
