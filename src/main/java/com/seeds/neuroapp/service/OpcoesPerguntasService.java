@@ -32,7 +32,7 @@ public class OpcoesPerguntasService {
     }
 
     public OpcoesPerguntas consultarOpcoesPerguntasPorId(Long id){
-        return opcoesPerguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("OpcoePergunta não encontrada"));
+        return opcoesPerguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("OpcaoPergunta não encontrada"));
     }
 
     public List<OpcoesPerguntas> consultarTodosOpcoesPerguntas(){
@@ -41,7 +41,7 @@ public class OpcoesPerguntasService {
 
     public OpcoesPerguntas atualizarOpcoesPerguntas(OpcoesPerguntas opcoesPerguntas, Long id){
         if (!opcoesPerguntasRepository.existsById(id)){
-            throw new ResourceNotFoundException("OpcoePergunta não encontrada");
+            throw new ResourceNotFoundException("OpcaoPergunta não encontrada");
         }
         if (opcoesPerguntas.getPergunta()!=null){
             verificarExistenciaPergunta(opcoesPerguntas.getPergunta());
@@ -52,7 +52,7 @@ public class OpcoesPerguntasService {
 
     public void deletarOpcoesPerguntas(Long id){
         if(!opcoesPerguntasRepository.existsById(id)){
-            throw new ResourceNotFoundException("OpcoePergunta não encontrada");
+            throw new ResourceNotFoundException("OpcaoPergunta não encontrada");
         }
         opcoesPerguntasRepository.deleteById(id);
     }
