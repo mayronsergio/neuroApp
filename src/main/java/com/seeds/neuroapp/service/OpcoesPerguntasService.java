@@ -5,7 +5,6 @@ import com.seeds.neuroapp.exception.ResourceNotFoundException;
 import com.seeds.neuroapp.model.OpcoesPerguntas;
 import com.seeds.neuroapp.model.Perguntas;
 import com.seeds.neuroapp.repository.OpcoesPerguntasRepository;
-import com.seeds.neuroapp.repository.PacienteRepository;
 import com.seeds.neuroapp.repository.PerguntasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,8 +24,8 @@ public class OpcoesPerguntasService {
     }
 
     public OpcoesPerguntas salvarOpcoesPerguntas(OpcoesPerguntas opcoesPerguntas){
-        if (opcoesPerguntas.getPerguntas()!=null){
-            verificarExistenciaPergunta(opcoesPerguntas.getPerguntas());
+        if (opcoesPerguntas.getPergunta()!=null){
+            verificarExistenciaPergunta(opcoesPerguntas.getPergunta());
             return opcoesPerguntasRepository.save(opcoesPerguntas);
         }
         throw new BadRequestException("A pergunta associada não pode ser nula.");
@@ -44,8 +43,8 @@ public class OpcoesPerguntasService {
         if (!opcoesPerguntasRepository.existsById(id)){
             throw new ResourceNotFoundException("OpcoePergunta não encontrada");
         }
-        if (opcoesPerguntas.getPerguntas()!=null){
-            verificarExistenciaPergunta(opcoesPerguntas.getPerguntas());
+        if (opcoesPerguntas.getPergunta()!=null){
+            verificarExistenciaPergunta(opcoesPerguntas.getPergunta());
             return opcoesPerguntasRepository.save(opcoesPerguntas);
         }
         throw new BadRequestException("A pergunta associada não pode ser nula.");

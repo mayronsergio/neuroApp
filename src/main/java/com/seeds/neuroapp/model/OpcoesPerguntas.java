@@ -1,9 +1,9 @@
 package com.seeds.neuroapp.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Data
@@ -18,6 +18,7 @@ public class OpcoesPerguntas {
 
     private int valor;
 
+    @NotNull(message = "O campo 'pergunta' não pode ser nulo.")
     @ManyToOne
-    private Perguntas perguntas;
+    private Perguntas pergunta;
 }
