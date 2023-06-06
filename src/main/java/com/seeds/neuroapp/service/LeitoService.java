@@ -5,6 +5,7 @@ import com.seeds.neuroapp.exception.ResourceNotFoundException;
 import com.seeds.neuroapp.model.Leito;
 import com.seeds.neuroapp.repository.LeitoRepository;
 import com.seeds.neuroapp.repository.PacienteRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,12 +41,13 @@ public class LeitoService {
     }
 
     public Leito atualizarLeito(Leito leito, Long id){
-        leitoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Leito não encontrado"));
+        Leito leitoExistente = leitoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Leito não encontrado"));
         if (leito.getPaciente() != null){
             verificarPacienteExistente(leito);
             verificarAssociacaoPacienteLeitoDuplicada(leito);
         }
-        return leitoRepository.save(leito);
+        BeanUtils.copyProperties(leito, leitoExistente, "idLeito");
+        return leitoRepository.save(leitoExistente);
     }
 
     public void deletarLeito(Long id){

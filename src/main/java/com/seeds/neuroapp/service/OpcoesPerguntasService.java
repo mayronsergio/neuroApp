@@ -3,9 +3,10 @@ package com.seeds.neuroapp.service;
 import com.seeds.neuroapp.exception.BadRequestException;
 import com.seeds.neuroapp.exception.ResourceNotFoundException;
 import com.seeds.neuroapp.model.OpcoesPerguntas;
-import com.seeds.neuroapp.model.Perguntas;
+import com.seeds.neuroapp.model.Pergunta;
 import com.seeds.neuroapp.repository.OpcoesPerguntasRepository;
 import com.seeds.neuroapp.repository.PerguntasRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +44,10 @@ public class OpcoesPerguntasService {
         if (opcoesPerguntas.getPergunta()==null){
             throw new BadRequestException("A pergunta associada não pode ser nula.");
         }
-        opcoesPerguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("OpcaoPergunta não encontrada"));
+        OpcoesPerguntas opcoesPerguntasExistente = opcoesPerguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("OpcaoPergunta não encontrada"));
         verificarExistenciaPergunta(opcoesPerguntas.getPergunta());
-        return opcoesPerguntasRepository.save(opcoesPerguntas);
+        BeanUtils.copyProperties(opcoesPerguntas, opcoesPerguntasExistente, "idOpcoesPerguntas");
+        return opcoesPerguntasRepository.save(opcoesPerguntasExistente);
     }
 
     public void deletarOpcoesPerguntas(Long id){
@@ -53,7 +55,7 @@ public class OpcoesPerguntasService {
         opcoesPerguntasRepository.deleteById(id);
     }
 
-    public void verificarExistenciaPergunta(Perguntas perguntas){
-        perguntasRepository.findById(perguntas.getIdPerguntas()).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
+    public void verificarExistenciaPergunta(Pergunta pergunta){
+        perguntasRepository.findById(pergunta.getIdPergunta()).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
     }
 }

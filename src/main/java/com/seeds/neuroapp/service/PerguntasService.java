@@ -1,8 +1,9 @@
 package com.seeds.neuroapp.service;
 
 import com.seeds.neuroapp.exception.ResourceNotFoundException;
-import com.seeds.neuroapp.model.Perguntas;
+import com.seeds.neuroapp.model.Pergunta;
 import com.seeds.neuroapp.repository.PerguntasRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,21 +19,22 @@ public class PerguntasService {
         this.perguntasRepository = perguntasRepository;
     }
 
-    public Perguntas salvarPerguntas(Perguntas perguntas){
-        return perguntasRepository.save(perguntas);
+    public Pergunta salvarPerguntas(Pergunta pergunta){
+        return perguntasRepository.save(pergunta);
     }
 
-    public Perguntas consultarPerguntasPorId(Long id){
+    public Pergunta consultarPerguntasPorId(Long id){
         return perguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
     }
 
-    public List<Perguntas> consultarTodosPerguntas(){
+    public List<Pergunta> consultarTodosPerguntas(){
         return perguntasRepository.findAll();
     }
 
-    public Perguntas atualizarPerguntas(Perguntas perguntas, Long id){
-        perguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
-        return perguntasRepository.save(perguntas);
+    public Pergunta atualizarPerguntas(Pergunta pergunta, Long id){
+        Pergunta perguntaExistente = perguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
+        BeanUtils.copyProperties(pergunta, perguntaExistente, "idPergunta");
+        return perguntasRepository.save(perguntaExistente);
     }
 
     public void deletarPerguntas(Long id){

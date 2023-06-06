@@ -1,7 +1,6 @@
 package com.seeds.neuroapp.controller;
 
-import com.seeds.neuroapp.model.Paciente;
-import com.seeds.neuroapp.model.Perguntas;
+import com.seeds.neuroapp.model.Pergunta;
 import com.seeds.neuroapp.service.PerguntasService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,23 +21,23 @@ public class PerguntaController {
     }
 
     @PostMapping
-    public Perguntas salvarPergunta(@Valid @RequestBody Perguntas perguntas){
-        return perguntasService.salvarPerguntas(perguntas);
+    public Pergunta salvarPergunta(@Valid @RequestBody Pergunta pergunta){
+        return perguntasService.salvarPerguntas(pergunta);
     }
 
     @GetMapping("/{id}")
-    public Perguntas consultarPorId(@PathVariable Long id){
+    public Pergunta consultarPorId(@PathVariable Long id){
         return perguntasService.consultarPerguntasPorId(id);
     }
 
     @GetMapping
-    public List<Perguntas> consultarTodosPacientes(){
+    public List<Pergunta> consultarTodosPacientes(){
         return perguntasService.consultarTodosPerguntas();
     }
 
     @PutMapping("/{id}")
-    public Perguntas atualizarPaciente(@Valid @RequestBody Perguntas perguntas, @PathVariable Long id){
-        return perguntasService.atualizarPerguntas(perguntas, id);
+    public Pergunta atualizarPaciente(@Valid @RequestBody Pergunta pergunta, @PathVariable Long id){
+        return perguntasService.atualizarPerguntas(pergunta, id);
     }
 
     @DeleteMapping("/{id}")

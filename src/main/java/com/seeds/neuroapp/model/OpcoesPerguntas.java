@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Data
 public class OpcoesPerguntas {
@@ -23,5 +21,5 @@ public class OpcoesPerguntas {
     @NotNull(message = "O campo 'pergunta' não pode ser nulo.")
     @ManyToOne
     @JoinColumn(name = "pergunta_id")
-    private Perguntas pergunta;
+    private Pergunta pergunta;
 }

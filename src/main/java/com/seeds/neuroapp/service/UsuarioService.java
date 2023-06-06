@@ -4,6 +4,7 @@ import com.seeds.neuroapp.exception.BadRequestException;
 import com.seeds.neuroapp.exception.ResourceNotFoundException;
 import com.seeds.neuroapp.model.Usuario;
 import com.seeds.neuroapp.repository.UsuarioRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +36,9 @@ public class UsuarioService {
     }
 
     public Usuario atualizarUsuario(Usuario usuario, Long id){
-        usuarioRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Usuário não encontrado"));
-        return usuarioRepository.save(usuario);
+        Usuario usuarioExistente = usuarioRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Usuário não encontrado"));
+        BeanUtils.copyProperties(usuario, usuarioExistente, "idUsuario");
+        return usuarioRepository.save(usuarioExistente);
     }
 
     public void deletarUsuario(Long id){

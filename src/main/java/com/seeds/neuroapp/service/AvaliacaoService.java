@@ -34,9 +34,9 @@ public class AvaliacaoService {
     }
 
     public Avaliacao atualizar(Long id, Avaliacao avaliacao){
-        Avaliacao avaliacaoSalva = avaliacaoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Avaliação não encontrada"));
-        BeanUtils.copyProperties(avaliacao, avaliacaoSalva, "id");
-        return avaliacaoRepository.save(avaliacao);
+        Avaliacao avaliacaoExistente = avaliacaoRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Avaliação não encontrada"));
+        BeanUtils.copyProperties(avaliacao, avaliacaoExistente, "idAvaliacao");
+        return avaliacaoRepository.save(avaliacaoExistente);
     }
 
     public void deletar(Long id){

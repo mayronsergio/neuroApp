@@ -3,6 +3,7 @@ package com.seeds.neuroapp.service;
 import com.seeds.neuroapp.exception.ResourceNotFoundException;
 import com.seeds.neuroapp.model.Paciente;
 import com.seeds.neuroapp.repository.PacienteRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,8 +32,9 @@ public class PacienteService {
     }
 
     public Paciente atualizarPaciente(Paciente paciente, Long id){
-        pacienteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Paciente não encontrado"));
-        return pacienteRepository.save(paciente);
+        Paciente pacienteExistente = pacienteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Paciente não encontrado"));
+        BeanUtils.copyProperties(paciente, pacienteExistente, "idPaciente");
+        return pacienteRepository.save(pacienteExistente);
     }
 
     public void deletarPaciente(Long id){
