@@ -14,9 +14,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "scope227"
       MYSQL_DATABASE: "compose-mysql"
-      MYSQL_USER: "sa"
-      MYSQL_PASSWORD: "sa#123"
     volumes:
-      - /home/mayron/workspace/data:/var/lib/mysql
+      - ./data:/var/lib/mysql
     ports:
       - "3306:3306"
