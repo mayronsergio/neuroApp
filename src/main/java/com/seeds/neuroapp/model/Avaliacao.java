@@ -2,6 +2,7 @@ package com.seeds.neuroapp.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Columns;
 
 import java.util.Date;
 import java.util.List;
@@ -16,9 +17,19 @@ public class Avaliacao {
 
     private Date dataHora;
 
-    @OneToMany
-    private List<Usuario> usuario;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
-    @OneToMany
-    private List<Paciente> paciente;
+    @ManyToOne
+    @JoinColumn(name = "paciente_id")
+    private Paciente paciente;
+
+    @ManyToMany
+    @JoinTable(
+            name = "avaliacao_opcoes",
+            joinColumns = @JoinColumn(name = "avaliacao_id"),
+            inverseJoinColumns =  @JoinColumn(name = "opcoes_perguntas_id")
+    )
+    private List<OpcoesPerguntas> opcoesPerguntas;
 }

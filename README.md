@@ -53,3 +53,11 @@ docker-compose down
 ```
 Isso encerrará os contêineres em execução.
 
+## Documentação
+Neste projeto, utilizei o Swagger para documentar a API. A documentação da API pode ser acessada em: [http://localhost:8181/swagger-ui/index.html#/](http://localhost:8181/swagger-ui/index.html#/)
+
+Na documentação do Swagger, você encontrará informações detalhadas sobre todos os endpoints disponíveis, seus parâmetros, tipos de dados esperados e exemplos de requisições e respostas. Sinta-se à vontade para explorar e utilizar a documentação conforme necessário.
+
+O Swagger é uma ferramenta de código aberto que auxilia na documentação, no design e no teste de APIs. Ele fornece uma maneira fácil e eficiente de descrever os endpoints de uma API, seus parâmetros, respostas e modelos de dados associados. Para saber mais sobre o Swagger, você pode consultar a documentação oficial em: [https://swagger.io](https://swagger.io)
+
+>Observação: É importante atentar-se que nesta api não estou usando o padrão de projeto DTO. Sendo necessária a aplicação do mesmo, visando evitar a exposição direta dos modelos de dados internos.

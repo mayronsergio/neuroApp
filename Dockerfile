@@ -1,8 +1,11 @@
 # Base image com JDK 17 e Maven
 FROM maven:3.8-openjdk-17-slim as build
 WORKDIR /src
-COPY . /src
+COPY pom.xml .
 
+# Baixa as dependências do Maven
+RUN mvn dependency:go-offline
+COPY . /src
 # Compila o aplicativo
 RUN mvn clean package -DskipTests
 

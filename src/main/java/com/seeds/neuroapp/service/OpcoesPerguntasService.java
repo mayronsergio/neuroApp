@@ -40,26 +40,20 @@ public class OpcoesPerguntasService {
     }
 
     public OpcoesPerguntas atualizarOpcoesPerguntas(OpcoesPerguntas opcoesPerguntas, Long id){
-        if (!opcoesPerguntasRepository.existsById(id)){
-            throw new ResourceNotFoundException("OpcaoPergunta não encontrada");
+        if (opcoesPerguntas.getPergunta()==null){
+            throw new BadRequestException("A pergunta associada não pode ser nula.");
         }
-        if (opcoesPerguntas.getPergunta()!=null){
-            verificarExistenciaPergunta(opcoesPerguntas.getPergunta());
-            return opcoesPerguntasRepository.save(opcoesPerguntas);
-        }
-        throw new BadRequestException("A pergunta associada não pode ser nula.");
+        opcoesPerguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("OpcaoPergunta não encontrada"));
+        verificarExistenciaPergunta(opcoesPerguntas.getPergunta());
+        return opcoesPerguntasRepository.save(opcoesPerguntas);
     }
 
     public void deletarOpcoesPerguntas(Long id){
-        if(!opcoesPerguntasRepository.existsById(id)){
-            throw new ResourceNotFoundException("OpcaoPergunta não encontrada");
-        }
+        opcoesPerguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("OpcaoPergunta não encontrada"));
         opcoesPerguntasRepository.deleteById(id);
     }
 
     public void verificarExistenciaPergunta(Perguntas perguntas){
-        if (!perguntasRepository.existsById(perguntas.getIdPerguntas())){
-            throw new ResourceNotFoundException("Pergunta não encontrada");
-        }
+        perguntasRepository.findById(perguntas.getIdPerguntas()).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
     }
 }

@@ -31,16 +31,12 @@ public class PacienteService {
     }
 
     public Paciente atualizarPaciente(Paciente paciente, Long id){
-        if (!pacienteRepository.existsById(id)){
-            throw new ResourceNotFoundException("Paciente não encontrado");
-        }
+        pacienteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Paciente não encontrado"));
         return pacienteRepository.save(paciente);
     }
 
     public void deletarPaciente(Long id){
-        if(!pacienteRepository.existsById(id)){
-            throw new ResourceNotFoundException("Paciente não encontrado");
-        }
+        pacienteRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Paciente não encontrado"));
         pacienteRepository.deleteById(id);
     }
 }

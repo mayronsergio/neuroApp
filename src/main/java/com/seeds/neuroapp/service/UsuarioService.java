@@ -35,16 +35,12 @@ public class UsuarioService {
     }
 
     public Usuario atualizarUsuario(Usuario usuario, Long id){
-        if (!usuarioRepository.existsById(id)){
-           throw new ResourceNotFoundException("Usuário não encontrado");
-        }
+        usuarioRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Usuário não encontrado"));
         return usuarioRepository.save(usuario);
     }
 
     public void deletarUsuario(Long id){
-        if(!usuarioRepository.existsById(id)){
-            throw new ResourceNotFoundException("Usuário não encontrado");
-        }
+        usuarioRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Usuário não encontrado"));
         usuarioRepository.deleteById(id);
     }
 }

@@ -31,16 +31,12 @@ public class PerguntasService {
     }
 
     public Perguntas atualizarPerguntas(Perguntas perguntas, Long id){
-        if (!perguntasRepository.existsById(id)){
-            throw new ResourceNotFoundException("Pergunta não encontrada");
-        }
+        perguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
         return perguntasRepository.save(perguntas);
     }
 
     public void deletarPerguntas(Long id){
-        if(!perguntasRepository.existsById(id)){
-            throw new ResourceNotFoundException("Pergunta não encontrada");
-        }
+        perguntasRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Pergunta não encontrada"));
         perguntasRepository.deleteById(id);
     }
 }
